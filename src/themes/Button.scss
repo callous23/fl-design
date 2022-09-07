@@ -1,0 +1,100 @@
+@import './common/var.scss';
+@import './mixin/mixin.scss';
+@import './mixin/buttonMixin.scss';
+@import './mixin/config.scss';
+
+// 传入button生成 fl-button-类名
+@include BaseName(button){
+  // 清空button的默认样式
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  background: $--button-default-background-color;
+  border: $border-base;
+  border-color: $--button-default-border-color;
+  color: $--button-default-font-color;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  transition: .1s;
+  font-weight: $--button-default-font-weight;
+
+  // 禁止鼠标选中
+  @include utils-user-select(none);
+  // 设置大小 button 有大 中 小
+  @include button-size($--button-padding-vertical,$--button-padding-horizontal,$--button-font-size,$--button-border-radius); 
+
+  @include m(success){
+    // color: $--color-white;
+    // border-color: $--color-success;
+    // background-color: $--color-success;
+    // &:hover,&:focus{
+    //   color: $--color-success;
+    //   border-color: $--color-primary-light-2;
+    //   background-color: $--color-primary-light-5;
+    // }   
+    @include button-variant($--button-success-font-color, $--button-success-background-color, $--button-success-border-color);
+  }
+
+  @include m(error){
+    @include button-variant($--button-error-font-color, $--button-error-background-color, $--button-error-border-color);
+  }
+  @include m(danger){
+    @include button-variant($--button-danger-font-color, $--button-danger-background-color, $--button-danger-border-color);
+  }
+  @include m(info){
+    @include button-variant($--button-info-font-color, $--button-info-background-color, $--button-info-border-color);
+  }
+
+  @include m(medium){
+    @include  button-size($--button-medium-padding-vertical,$--button-medium-padding-horizontal,$--button-medium-font-size,$--button-medium-border-radius)
+  }
+  
+  @include m(small){
+    @include  button-size($--button-small-padding-vertical,$--button-small-padding-horizontal,$--button-medium-font-size,$--button-medium-border-radius)
+  }
+  
+  @include m(mini){
+    @include  button-size($--button-mini-padding-vertical,$--button-mini-padding-horizontal,$--button-medium-font-size,$--button-medium-border-radius)
+  }
+  
+  @include m(is-disable){
+    cursor:not-allowed;
+  }
+
+  @include when(disable){
+    cursor: not-allowed;
+    opacity: 0.5;
+
+  }
+
+}
+
+
+
+
+
+// .fl-button-success{
+//   color: $--color-white;
+//   border-color: $--color-success;
+//   background-color: $--color-success;
+//   &:hover,&:focus{
+//     color: $--color-success;
+//     border-color: $--color-primary-light-2;
+//     background-color: $--color-primary-light-5;
+//   }
+// }
+
+// .fl-button-error{
+//   color: $--color-white;
+//   border-color: $--color-white;
+//   background-color: $--color-error;
+//   &:hover,&:focus{
+//     color: $--color-success;
+//     border-color: $--color-primary-light-2;
+//     background-color: $--color-primary-light-9;
+//   }
+// }

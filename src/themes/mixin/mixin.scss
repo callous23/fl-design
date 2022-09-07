@@ -1,0 +1,54 @@
+@import './config.scss';
+
+
+// BaseName  基础名字
+@mixin BaseName($block) {
+    $name:$name-space + $base-separator + $block !global;
+
+    .#{$name}{
+        @content
+    }
+
+};
+
+@mixin m($type){
+    // $block : success
+    $currentSelect:'';
+    $preSelect:&;
+
+    @each $unim in $type {
+        $currentSelect:$currentSelect+$preSelect+$modifier-separator+$unim;
+    }
+
+    // 解决: !global 失效问题
+    @at-root {
+        #{$currentSelect} {
+            @content;
+        }
+    }
+};
+
+@mixin when($state) {
+    @at-root {
+        &.#{$state-prefix + $state}{
+            @content;
+        }
+    }
+}
+
+
+
+
+// 这里写一下样式工具混入指令,
+
+//  因为在很多组件中 需要禁止选中例如 loading model swiper button ...
+//  控制页面文字无法选中，禁止鼠标右键
+
+@mixin utils-user-select($value) {
+    -moz-user-select: $value;
+    -webkit-user-select: $value;
+    -ms-user-select: $value;
+}
+
+// 清楚浮动
+  
